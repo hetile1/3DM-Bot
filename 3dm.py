@@ -18,6 +18,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.cfg')
 
+VERSION= "1.1.3"
 DEBUG  = True
 PREFIX = "!3DM"
 GCODE  = "!GCODE"
@@ -118,6 +119,9 @@ async def noob(msg):
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
+    booted = bot.get_channel(670757903678046218)
+    await booted.send(f"I've been rebooted - v{VERSION}")
+
 
 @bot.event
 async def on_raw_reaction_add(payload):
