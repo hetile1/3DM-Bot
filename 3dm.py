@@ -18,7 +18,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.cfg')
 
-VERSION= "1.1.4b"
+VERSION= "1.1.4"
 DEBUG  = True
 PREFIX = "!3DM"
 GCODE  = "!GCODE"
