@@ -63,6 +63,7 @@ def __help():
     output.add_field(name="!tweet link [user]", value="Link your discord user to a twitter account for tagging when posting. If [user] is ommited, display current link", inline=False)
     output.add_field(name="!tweet unlink", value="Remove link between discord account and twitter account", inline=False)
     output.add_field(name="!tweet top", value="Show top twitted members", inline=False)
+    output.add_field(name="!tweet stat", value="Show your current twitter stats", inline=False)
     output.add_field(name="!tweet next", value="Display the next 5 tweets in queue", inline=False)
     output.add_field(name="!tweet [list|delete|ID] [pos] short text (restricted)", value="Post a user's message (ID) to the twitter account.", inline=False)
     output.add_field(name="Community",value="The following are community contributions", inline=False)
