@@ -263,7 +263,6 @@ async def on_message(msg):
                             out_msg += f"Total posted tweets: **{infos[1][1]}**\n"
                         else:
                             out_msg += "No stats found"
-                        delete_post = False
                     elif sub_msg.startswith("TOP"):
                         out_msg += "3DMeltdown top 10 tweeted members: (_<https://twitter.com/3DMeltdown>_)\n"
                         x=1
