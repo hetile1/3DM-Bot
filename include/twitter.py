@@ -16,14 +16,14 @@ discord_link = "discord.gg/fPmuqzQ"
 #              ]
 
 
-tag_phrase = ['Need #3dprinting help? Want to share your latest #3dprint? Join us: {0}',
-                'Join our #3dprinting #3dprinter community and share with us: {0}',
-                'Questions #3dprinting #3dprinter ? Join us: {0}',
-                "Share your #3dprinting #3dprinter journey with us: {0}",
-                "Need some #help or #support with your #3dprinter ? Join us: {0}",
-                "#3dprinting is your hobby/drive you crazy? Join our discord: {0}",
-                "Become part of our great #Discord #3DPrinting #3DModeling community: {0}",
-                "Interested in #3Dprinting #3DPrinter? join us on our discord server: {0}"
+tag_phrase = ['Need #3dprinting help? Want to share your latest #3dprint? Join us on discord.',
+                'Join our #3dprinting #3dprinter community and share with us.',
+                'Questions #3dprinting #3dprinter ? Join us on discord.',
+                "Share your #3dprinting #3dprinter journey with us on discord.",
+                "Need some #help or #support with your #3dprinter ? Join us on discord.",
+                "#3dprinting is your hobby/drive you crazy? Join our Discord.",
+                "Become part of our great #Discord #3DPrinting #3DModeling community!",
+                "Interested in #3Dprinting #3DPrinter? join us on our discord server."
             ]
 tag_head = [ '#3dprint post by {0} on our discord:\nJoin us: {1}\n\n',
              'Shared by {0} #3dprint on our discord:\nJoin us: {1}\n\n',
@@ -221,7 +221,7 @@ class MyTwitter():
         if author_id and self.tdb.get_link(author_id):
             self.tweet['author'] = "@{0}".format(self.tdb.get_link(author_id))
         self.tweet['text_tag'] = text
-        self.tweet['text'] = random.choice(tag_head).format(self.tweet['author'],discord_link) + text + "\n\n" + random.choice(tag_phrase).format(discord_link)
+        self.tweet['text'] = random.choice(tag_head).format(self.tweet['author'],discord_link) + text + "\n\n" + random.choice(tag_phrase)
     
     def link_author(self, id, name):
         self.tdb.create_link(id, name)
