@@ -11,22 +11,7 @@ rd = dateutil.relativedelta.relativedelta (end_contest, dt2)
 
 DISCORD_IDEX = 0 #test: 2
 DESC_INDEX = 0
-DISCORD_HOOK   =[ [ 'https://discordapp.com/api/webhooks/673352384822378511/jJpS3G87pDvSZyUoFYhu5i24ZvoFB7eg7Sje_BoA4uqWoYPYu9eXIfAD3YanJ4IXffVy',
-                    'https://discordapp.com/api/webhooks/673352065807941702/NhKZwFIC5JONfFZgNzmIQlX_JqUZND9WYJXIQatCJ-IXzWszp7rwb0-ysC6PPIUu_eiB',
-                    'https://discordapp.com/api/webhooks/681991884100468823/0aJCwepjMzplaDFKCt0UgoIGo0VPT25VfeVF1HDU_eYbiiuO_I7dN62WpPZaDXm1-z1P',
-                    'https://discordapp.com/api/webhooks/681991573390622752/Tp8j8ABuSSoktvp1WYotKgEcAccvJl9dN_Zh-1OTwkSExrQsBcTdlObvKY-UbbWd5pMl', #showoff
-                    'https://discordapp.com/api/webhooks/681992174358757387/_VcPefyyZHt-KoYea4GSOJxExBMTkb-jdg_e6I5pGZ3D3Ya3SNDiS6gyVHHwulx-lnXB', # support-3
-                    'https://discordapp.com/api/webhooks/681992056389763093/baDkYEqFZRyxQN5HlDHLQhiklTSntkFDxPOOeBlrDN6b3v_DRGIflBYrJFKWt3Hqa2ng'  # support-2
-                  ],
-                  [ 'https://discordapp.com/api/webhooks/673352384822378511/jJpS3G87pDvSZyUoFYhu5i24ZvoFB7eg7Sje_BoA4uqWoYPYu9eXIfAD3YanJ4IXffVy', # 3dprint, community and support1
-                    'https://discordapp.com/api/webhooks/673352065807941702/NhKZwFIC5JONfFZgNzmIQlX_JqUZND9WYJXIQatCJ-IXzWszp7rwb0-ysC6PPIUu_eiB',
-                    'https://discordapp.com/api/webhooks/681991884100468823/0aJCwepjMzplaDFKCt0UgoIGo0VPT25VfeVF1HDU_eYbiiuO_I7dN62WpPZaDXm1-z1P'
-                  ],
-                  [ 'https://discordapp.com/api/webhooks/681988092542189569/AdbhKMhrvILT_hasenxDlAtpKCz7VcgXmGsbcIdzmwJoKNRrsXvj3_JMTJJkSvAkj2kD' #test
-                  ],
-                  [ 'https://discordapp.com/api/webhooks/706193521446748259/F8i9_A_5SA_fHhYZ0aON3vN5lVJ4hUH_kOifYWDrI2hp4UszaviPnYdE9sYSmfG6h4bc', #announce
-                    'https://discordapp.com/api/webhooks/706191608504385638/O54XqGz7QEWXaH5aDudsORUH9PtdLvFZmjmg-DEDPS-g9apoAwGhiDXK6iCdnsXThgp5' #news
-                  ] ]
+DISCORD_HOOK   =[ 'x' ]
 
 
 rule = 'https://discordapp.com/channels/637075986726518794/651199972221517824/755186852750950421'
