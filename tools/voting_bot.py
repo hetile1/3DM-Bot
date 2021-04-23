@@ -4,7 +4,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 from datetime import datetime
 import dateutil.relativedelta
 
-DISCORD_HOOK  = 'https://discordapp.com/api/webhooks/773354048899383338/fww2kibytobkRzjoXRfHipKpvX5OLM4vOIQVQxScbDQtkEo9CuWrKSmL6mSjW_fbSI7l'
+DISCORD_HOOK  = 'x'
 webhook       = DiscordWebhook(url=DISCORD_HOOK)
 
 post = [  [ "Puro", "https://discordapp.com/channels/637075986726518794/762872025210421268/767187014709280778", "https://cdn.discordapp.com/attachments/762872025210421268/767189127941849108/DSC01416.JPG" ],
