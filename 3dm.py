@@ -54,7 +54,6 @@ t = MyTwitter()
 intents = discord.Intents().all()
 #bot = discord.Client()
 bot = discord.ext.commands.Bot(command_prefix='', case_insensitive=True, intents=intents)
-#bot.add_cog(DiceCog(bot))
 
 # fix some different way to type currency
 class cc_arg():
@@ -610,21 +609,23 @@ async def on_message(msg):
             else:
                 search_path = config['gcode']['path']
                 search = msg.content[7:]
-                output = discord.Embed(description="gcode search result for `{0}`".format(search), color=POST_COLOR)
 
-                gcode = subprocess.check_output('grep -i '+search+' '+search_path+'* |sed \'s/:.*//\' |uniq -c |sort -r |awk \'{print $2}\' |head -n 5', shell=True).splitlines()
-                for g in gcode:
-                    content = open(g, "r").read()
-                    desc = re.search(r'title: (.*)', content).group(1)
-                    code = re.search(r'codes: \[ (.*?) ]', content).group(1)
-                    link = "https://marlinfw.org/docs/gcode/{0}.html".format( re.search("b'(.*?).md'", str(g).replace(search_path,'')).group(1) )
-
-                    output.add_field(name=code+": "+desc, value=link, inline=False)
-
-                if output.fields:
-                    await msg.channel.send(embed=output)
+                formatted_gcode = search[0] + search[1:].zfill(3)
+                for filename in os.listdir(search_path):
+                    if formatted_gcode in filename:
+                        file_content = open(filename, 'r').read()
+                        link_name = filename.replace(".md", ".html")
+                        output = True
+                        break
                 else:
-                    await msg.channel.send("no result found for `{0}`".format(search))
+                    output = False
+
+                if not output:
+                    await msg.channel.send("No result found for `{0}`".format(search))
+                else:
+                    
+                    embed = discord.Embed(description="Gcode result for `{0}`".format(search), color=POST_COLOR)
+                    embed.set_footer(text="https://marlinfw.org/docs/gcode/{0}".format(link_name))
 #        else:
 #            await bot.process_commands(msg)
 
