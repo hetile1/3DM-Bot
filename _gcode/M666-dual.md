@@ -4,14 +4,10 @@ title: Set dual endstop offsets
 brief: Set dual endstop offsets
 author: ManuelMcLure
 
-experimental: false
 group: calibration
 requires: (X|Y|Z)_DUAL_ENDSTOPS
 
 codes: [ M666 ]
-
-long: |
-    The `M666` command allows adjusting the offsets for dual endstops
 
 parameters:
   -
@@ -42,3 +38,5 @@ parameters:
 examples:
 
 ---
+
+Use the [`M666`](/docs/gcode/M666.html) command to adjust the offsets for dual (or multiple) endstops.
