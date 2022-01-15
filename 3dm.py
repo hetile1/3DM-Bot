@@ -553,7 +553,7 @@ async def on_message(msg):
             else:
                 search_path = config['gcode']['path']
                 # only use the first word to avoid command injection
-                search = re.search(r'^ *([\w\d_-]+)', msg.content[7:],  flags=re.IGNORECASE).groups()[0]
+                search = re.search(r'^ *([\w\d_-\s]+)', msg.content[7:],  flags=re.IGNORECASE).groups()[0]
                 output = discord.Embed(description="gcode search result for `{0}`".format(search), color=POST_COLOR)
 
                 gcode = subprocess.check_output('grep -i '+search+' '+search_path+'* |sed \'s/:.*//\' |uniq -c |sort -r |awk \'{print $2}\' |head -n 5', shell=True).splitlines()
