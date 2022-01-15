@@ -15,14 +15,11 @@ from include.linux_color import _c as ct
 from include.my_google import Google
 from include.twitter import MyTwitter
 
-#Cogs
-#from Cogs.DiceCog import DiceCog
-
 import configparser
 config = configparser.ConfigParser()
 config.read('config.cfg')
 
-VERSION= "1.1.24 - on aws"
+VERSION= "1.1.25 - on aws"
 DEBUG  = True
 PREFIX = "!3DM"
 GCODE  = "!GCODE"
@@ -138,53 +135,6 @@ async def noob(msg):
 
     return True
 
-async def count_control(msg):
-    roles   = [y.name.lower() for y in msg.author.roles]
-    if re.match( r"I(?:'M| AM) A LO*SER" , msg.content.upper() ):
-        __debug("line match", True)
-        if "loser" in roles:
-            __debug("role present", True)
-            out_emb = discord.Embed(title="so.. you're a loser",
-                                        description="Thanks for reconnizing it <@{0}>! We'll make it easy on you.\n\n"\
-                                            "Your countdown started. You will get tagged once you can re-gain the role.\n\n"\
-                                            "\n\nTHE DELAY IS CURRENTLY OFF, YOU GET THE ROLE BACK.\n\n"\
-                                            "This message will self-delete in 30 sec. Yours in 1 hour".format(msg.author.id), color=POST_COLOR)
-            #out_emb.set_footer(text="This message will self-delete in 30 sec. Yours in 12 hours")
-            id = await msg.channel.send(embed=out_emb)
-            await id.delete(delay=30)
-            await msg.author.remove_roles(discord.utils.get(msg.author.guild.roles, name="Loser"))
-            await msg.delete(delay=3600)
-    else:
-        await msg.delete()
-
-    return True
-
-
-async def my_background_task():
-    me = bot.guild.members
-    fixed = []
-    for x in me:
-        roles   = [y.name.lower() for y in x.roles]
-        if x.bot or 'poop hitter' in roles:
-            continue
-        fixed.append(x)
-        await x.add_roles(discord.utils.get(msg.author.guild.roles, name="poop hitter"))
-    output = ""
-    if fixed:
-        output = "Fixed members: {0}\n".format(len(fixed))
-        for x in fixed:
-            output += "- {0} ({1})\n".format(x, x.display_name)
-    else:
-        output = "No member fixed"
-
-    await client.wait_until_ready()
-    counter = 0
-    channel = discord.Object(id='channel_id_here')
-    while not client.is_closed:
-        counter += 1
-        await client.send_message(channel, counter)
-        await asyncio.sleep(60) # task runs every 60 seconds
-
 async def play_voice(sound, ch):
     if not ch:
         ch = 637399140086710292
@@ -266,12 +216,6 @@ async def on_message(msg):
         await checkImgPost(msg)
 
         # some useless role tagging
-        if "WEEB" in msg_content and not "HTTP" in msg_content:
-            roles   = [y.name.lower() for y in msg.author.roles]
-            if not "weeb" in roles:
-                __debug(msg)
-                await msg.author.add_roles(discord.utils.get(msg.author.guild.roles, name="weeb"))
-                await msg.channel.send("{0} used the `w` word.. adding role.".format(msg.author.display_name))
         if re.search("ANUS", msg_content) or re.search("ANAL(?!I|Y|O)", msg_content):
             roles   = [y.name.lower() for y in msg.author.roles]
             if not "anal" in roles:
@@ -608,7 +552,8 @@ async def on_message(msg):
 
             else:
                 search_path = config['gcode']['path']
-                search = msg.content[7:]
+                # only use the first word to avoid command injection
+                search = re.search(r'^ *([\w\d_-]+)', msg.content[7:],  flags=re.IGNORECASE).groups()[0]
                 output = discord.Embed(description="gcode search result for `{0}`".format(search), color=POST_COLOR)
 
                 gcode = subprocess.check_output('grep -i '+search+' '+search_path+'* |sed \'s/:.*//\' |uniq -c |sort -r |awk \'{print $2}\' |head -n 5', shell=True).splitlines()
@@ -624,8 +569,7 @@ async def on_message(msg):
                     await msg.channel.send(embed=output)
                 else:
                     await msg.channel.send("no result found for `{0}`".format(search))
-#        else:
-#            await bot.process_commands(msg)
+
 
 
 bot.run(config['discord']['token'])
