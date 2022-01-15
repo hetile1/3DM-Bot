@@ -54,7 +54,6 @@ t = MyTwitter()
 intents = discord.Intents().all()
 #bot = discord.Client()
 bot = discord.ext.commands.Bot(command_prefix='', case_insensitive=True, intents=intents)
-#bot.add_cog(DiceCog(bot))
 
 # fix some different way to type currency
 class cc_arg():
