@@ -1,6 +1,7 @@
 .vscode/*
 __pycache__/*
 include/__pycache__/*
+currency/eurofxref.csv
 status.log
 tweets.db
 *.jpg
