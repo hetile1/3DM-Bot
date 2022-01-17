@@ -45,6 +45,7 @@ JOIN_CHANNEL    = 689574436302880843
 WELCOME_MESSAGE = f"https://discordapp.com/channels/{SERVER_ID}/637076225843527690/637108901720096770"
 
 COUNT_CHANNEL   = 732365559647174736
+msg_to_delete   = {}
 
 t = MyTwitter()
 
@@ -395,15 +396,14 @@ async def on_message(msg):
                 else:
                     out_msg += "Sorry {0} you're not allowed to use this command".format(msg.author.display_name)
 
-                my_msg = ""
                 if out_emb:
-                    my_msg = await msg.channel.send(embed=out_msg)
+                    msg_to_delete[msg.id] = await msg.channel.send(embed=out_msg)
                 else:
-                    my_msg = await msg.channel.send(out_msg)
+                    msg_to_delete[msg.id] = await msg.channel.send(out_msg)
 
                 if delete_post:
+                    await msg_to_delete[msg.id].delete(delay=delete_delay)
                     await msg.delete()
-                    await my_msg.delete(delay=delete_delay)
 
         # This handle the currency conversion
         elif msg_content.startswith("!CONVERT") or msg_content.startswith("/CONVERT"):
