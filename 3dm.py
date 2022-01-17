@@ -559,11 +559,12 @@ async def on_message(msg):
                 gcode = subprocess.check_output('grep -i '+search+' '+search_path+'* |sed \'s/:.*//\' |uniq -c |sort -nr |awk \'{print $2}\' |head -n 5', shell=True).splitlines()
                 for g in gcode:
                     content = open(g, "r").read()
-                    desc = re.search(r'title: (.*)', content).group(1)
+                    title = re.search(r'title: (.*)', content).group(1)
+                    brief = re.search(r'brief: (.*)', content).group(1)
                     code = re.search(r'codes: \[ (.*?) ]', content).group(1)
                     link = "https://marlinfw.org/docs/gcode/{0}.html".format( re.search("b'(.*?).md'", str(g).replace(search_path,'')).group(1) )
 
-                    output.add_field(name=code+": "+desc, value=link, inline=False)
+                    output.add_field(name=code+": "+title, value=brief + "\n" + link, inline=False)
 
                 if output.fields:
                     await msg.channel.send(embed=output)
